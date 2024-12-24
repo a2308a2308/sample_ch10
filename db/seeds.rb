@@ -45,3 +45,34 @@ items_with_images.each do |data|
   file_path = Rails.root.join(data[:image_path])
   item.image.attach(io: File.open(file_path), filename: File.basename(file_path), content_type: 'image/jpeg')
 end
+
+# サンプル質問２を作成
+question = Question.find_or_create_by(
+  subject: 'サンプル質問',
+  question_type: 1,
+  question: 'lion',
+  level: 1,
+  category: Category.find_or_create_by(name: '英単語')
+)
+
+# アイテムデータと画像パス
+items_with_images = [
+  { answer: 'ゾウ', correct: false, image_path: 'public/sample_images/elephant.jpeg' },
+  { answer: 'キリン', correct: false, image_path: 'public/sample_images/giraffe.jpeg' },
+  { answer: 'ライオン', correct: true, image_path: 'public/sample_images/lion.jpeg' },
+  { answer: 'シマウマ', correct: false, image_path: 'public/sample_images/zebra.jpeg' }
+]
+
+# アイテムを作成し、画像をアタッチ
+items_with_images.each do |data|
+  item = Item.find_or_create_by(
+    question: question,
+    answer: data[:answer],
+    correct: data[:correct]
+  )
+
+  next if item.image.attached? # 既にアタッチされている場合はスキップ
+
+  file_path = Rails.root.join(data[:image_path])
+  item.image.attach(io: File.open(file_path), filename: File.basename(file_path), content_type: 'image/jpeg')
+end
