@@ -3,5 +3,5 @@ class Item < ApplicationRecord
   validates :question_id, presence: true
   validates :answer, presence: true
   validates :correct, inclusion: { in: [true, false] } # booleanのバリデーション
-
+  has_one_attached :image
 end

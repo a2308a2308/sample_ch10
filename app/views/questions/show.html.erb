@@ -15,6 +15,13 @@
       <tr>
         <td><%= item.answer %></td>
         <td><%= item.correct ? 'Yes' : 'No' %></td>
+        <td>
+          <% if item.image.attached? %>
+            <%= image_tag url_for(item.image), alt: item.answer %>
+          <% else %>
+            <p>No Image Available</p>
+          <% end %>  
+        </td>
       </tr>
     <% end %>
   </tbody>
