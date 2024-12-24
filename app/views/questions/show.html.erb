@@ -1,0 +1,21 @@
+<h1>Question: <%= @question.subject %></h1>
+<p><strong>Question Type:</strong> <%= @question.question_type %></p>
+<p><strong>Question:</strong> <%= @question.question %></p>
+
+<h2>Items</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Answer</th>
+      <th>Correct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.answer %></td>
+        <td><%= item.correct ? 'Yes' : 'No' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
