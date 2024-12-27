@@ -3,26 +3,24 @@
 <p><strong>Question:</strong> <%= @question.question %></p>
 
 <h2>Items</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Answer</th>
-      <th>Correct</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.answer %></td>
-        <td><%= item.correct ? 'Yes' : 'No' %></td>
-        <td>
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <% @items.each do |item| %>
+      <div class="col-md-5"">
+        <div class="card mb-5">
           <% if item.image.attached? %>
-            <%= image_tag url_for(item.image), alt: item.answer %>
+            <%= image_tag url_for(item.image), class: 'card-img-top', alt: item.answer %>
           <% else %>
             <p>No Image Available</p>
-          <% end %>  
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <% end %>
+          <div class="card-body"">
+            <p class="card-text"><%= item.answer %></p>
+            <p class="card-text"><%= item.correct ? 'Yes' : 'No' %></p>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
