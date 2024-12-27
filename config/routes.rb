@@ -8,4 +8,8 @@ Rails.application.routes.draw do
   post   "/login",   to: "sessions#create"
   delete "/logout",  to: "sessions#destroy"
   resources :users
+
+  # ランキングページのルートを追加
+  get '/rankings', to: 'rankings#index'
 end
+

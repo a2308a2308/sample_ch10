@@ -1,0 +1,19 @@
+<h1>英単語テストランキング</h1>
+<table>
+  <thead>
+    <tr>
+      <th>順位</th>
+      <th>ユーザー名</th>
+      <th>スコア</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rankings.each_with_index do |ranking, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= ranking.username %></td>
+        <td><%= ranking.score %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
