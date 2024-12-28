@@ -28,3 +28,7 @@ jobs:
     steps:
     - name: echo
       run: echo "test"
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
