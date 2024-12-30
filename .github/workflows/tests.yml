@@ -45,3 +45,9 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-gems-  # 部分一致する最新のキャッシュを探します。
 
+    - name: Install dependencies
+      run: |
+        sudo apt-get update -qq
+        gem install bundler
+        bundle install
+
