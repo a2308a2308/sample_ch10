@@ -36,3 +36,12 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.2.6'  
+
+    - name: Cache Ruby gems # Ruby gemsをキャッシュします。
+      uses: actions/cache@v3
+      with:
+        path: vendor/bundle # キャッシュするディレクトリを指定します。
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }} # キャッシュのキーを指定します。
+        restore-keys: |
+          ${{ runner.os }}-gems-  # 部分一致する最新のキャッシュを探します。
+
