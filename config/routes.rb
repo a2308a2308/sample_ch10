@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   resources :users
-  resources :questions, only: [:show]
+  resources :questions, only: [:show] do
+    post 'answer', on: :member # POST /quessions/:id/answer
+  end
 end
