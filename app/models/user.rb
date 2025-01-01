@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :scores, dependent: :destroy
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 50 }
@@ -43,5 +44,13 @@ class User < ApplicationRecord
   # ユーザーのログイン情報を破棄する
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  def increment_score(date = Date.today)
+    # 当日のスコアを取得または作成
+    score = scores.find_or_initialize_by(date: date.to_date)
+    score.total += 1;
+    score.save!
+    score.increment!(:total) # `total` をカウントアップ
   end
 end
