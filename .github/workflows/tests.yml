@@ -56,3 +56,5 @@ jobs:
           cp config/database.ci.yml config/database.yml
           bundle install
           bundle exec rails db:create RAILS_ENV=test
+    - name: Run test
+      run: bundle exec rails test
