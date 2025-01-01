@@ -50,11 +50,14 @@ jobs:
         sudo apt-get update -qq
         gem install bundler
         bundle install
+    
+    - name: Set DATABASE_URL
+      run: echo "DATABASE_URL=postgresql://postgres:postgres@localhost:5432/production_db" >> $GITHUB_ENV
 
     - name: Setup database
       run: |
           cp config/database.ci.yml config/database.yml
           bundle install
-          bundle exec rails db:create RAILS_ENV=test
+          bundle exec rails db:create RAILS_ENV=production
     - name: Run test
-      run: bundle exec rails test
+      run: bundle exec rails test RAILS_ENV=production
