@@ -1,13 +1,11 @@
-<h1>Question: <%= @question.subject %></h1>
-<p><strong>Question Type:</strong> <%= @question.question_type %></p>
-<p><strong>Question:</strong> <%= @question.question %></p>
+<h1>質問 <%= @current_question.id %></h1>
+<p><%= @current_question.question %></p>
 
-<h2>Items</h2>
 <div class="py-5">
-  <%= form_with url: answer_question_path(@question), method: :post do %>
+  <%= form_with url: answer_question_path(@current_question), method: :post do %>
     <div class="container">
       <div class="row">
-        <% @question.items.each do |item| %>
+        <% @current_question.items.each do |item| %>
         <div class="col-md-5">
           <div class="card mb-5">
             <% if item.image.attached? %>
