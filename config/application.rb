@@ -8,6 +8,11 @@ Bundler.require(*Rails.groups)
 
 module SampleApp
   class Application < Rails::Application
+
+    config.middleware.insert_before 0, Rack::Runtime do |env|
+      Rails.logger.debug "Request Path: #{env['PATH_INFO']}"
+    end
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 

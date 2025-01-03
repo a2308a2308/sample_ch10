@@ -53,4 +53,9 @@ class User < ApplicationRecord
     score.save!
     score.increment!(:total) # `total` をカウントアップ
   end
+
+  def score_for_date(target_date = Date.today)
+    scores.find_by(date: target_date)&.total || 0
+  end
+
 end
