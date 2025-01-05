@@ -8,11 +8,14 @@ Rails.application.routes.draw do
   post   "/login",   to: "sessions#create"
   delete "/logout",  to: "sessions#destroy"
   resources :users
-  
+
   # 質問関連のルート
-  get 'questions/start', to: 'questions#start', as: :start_questions # 先に記述
+  get 'questions/start', to: 'questions#start', as: :start_questions
   resources :questions, only: [:show] do
-    post "answer", on: :member # POST /questions/:id/answer
+    post "answer", on: :member
   end
   get 'summary', to: 'questions#summary'
+
+  # ランキング関連のルートを追加
+  resources :rankings, only: [:index]
 end
