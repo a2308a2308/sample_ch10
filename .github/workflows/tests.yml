@@ -1,6 +1,6 @@
 name: Test
 on:
-  push:
+  pull_request:
 jobs:
   # Label of the runner job
   runner-job:
@@ -28,3 +28,36 @@ jobs:
     steps:
     - name: echo
       run: echo "test"
+
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2.6'  
+
+    - name: Cache Ruby gems # Ruby gemsをキャッシュします。
+      uses: actions/cache@v3
+      with:
+        path: vendor/bundle # キャッシュするディレクトリを指定します。
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }} # キャッシュのキーを指定します。
+        restore-keys: |
+          ${{ runner.os }}-gems-  # 部分一致する最新のキャッシュを探します。
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update -qq
+        gem install bundler
+        bundle install
+    
+    - name: Set DATABASE_URL
+      run: echo "DATABASE_URL=postgresql://postgres:postgres@localhost:5432/production_db" >> $GITHUB_ENV
+
+    - name: Setup database
+      run: |
+          cp config/database.ci.yml config/database.yml
+          bundle install
+          bundle exec rails db:create RAILS_ENV=test
+    - name: Run test
+      run: bundle exec rails test
