@@ -10,21 +10,22 @@
         <% @question.items.each do |item| %>
         <div class="col-md-5">
           <div class="card mb-5">
+            <div class="card-body">
+              <%= radio_button_tag :choice, item.id %>
+              <label for="choice_#{item.id}">
             <% if item.image.attached? %>
               <%= image_tag url_for(item.image), class: 'card-img-top', alt: item.answer %>
             <% else %>
               <p>No Image Available</p>
             <% end %>
-            <div class="card-body">
+              </label>
               <p class="card-text"><%= item.answer %></p>
-              <%= radio_button_tag :choice, item.id %>
-              <%= label_tag "choice_#{item.id}", "選択" %>
             </div>
           </div>
         </div>
         <% end %>
       </div>
     </div>
-    <%= submit_tag "回答する" %>
+    <%= submit_tag "回答する" , class: "btn btn-lg btn-primary"%>
   <% end %>
 </div>
