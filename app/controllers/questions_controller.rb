@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :require_login, only: [:start]
   before_action :set_all_questions, only: [:start]
   before_action :set_current_question, only: [:show, :answer]
 
@@ -86,4 +87,11 @@ class QuestionsController < ApplicationController
       return nil
     end
   end
+
+  def require_login
+    unless logged_in?
+      redirect_to login_path, alert: "ログインしてください"
+    end
+  end
+
 end
