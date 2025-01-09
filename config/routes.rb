@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'questions/start', to: 'questions#start', as: :start_questions # 先に記述
   resources :questions, only: [:show] do
     post "answer", on: :member # POST /questions/:id/answer
+    # items を questions にネスト
+    resources :items, only: [:index, :create, :show]
   end
   get 'summary', to: 'questions#summary'
 end
