@@ -6,6 +6,7 @@ class CreateItems < ActiveRecord::Migration[7.0]
         t.string :answer, null: false                         # 回答内容
         t.boolean :correct, null: false, default: false       # 正解かどうか
         t.timestamps                                          # 作成日時、更新日時
+      end
     end
   end
 end
