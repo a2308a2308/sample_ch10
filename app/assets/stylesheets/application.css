@@ -10,7 +10,8 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ *= require_tree .  /* すべてのCSSを読み込む */
+ *= require rankings /* rankings.cssを追加で読み込む */
  *= require_self
  */
 
@@ -20,53 +21,52 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
-  padding: 20px 40px; /* さらに大きく */
-  font-size: 1.5rem;  /* フォントサイズを拡大 */
-  font-weight: bold;  /* 太字で目立たせる */
-  border-radius: 10px; /* 角を少し丸く */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影を強調 */
-  opacity: 0.95; /* 少し濃い透明感 */
-  background-color: #ffe6cc; /* 薄いオレンジ */
-  color: #333; /* 読みやすい濃い文字色 */
-  text-align: center; /* メッセージを中央揃え */
+  padding: 20px 40px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0.95;
+  background-color: #ffe6cc;
+  color: #333;
+  text-align: center;
 }
 
 .alert.alert-warning {
-  background-color: #ffc107; /* 明るい黄色 */
-  color: #000; /* 黒で読みやすく */
+  background-color: #ffc107;
+  color: #000;
 }
 
 .alert.alert-success {
-  background-color: #28a745; /* 緑 */
+  background-color: #28a745;
   color: #fff;
 }
 
 .alert.alert-danger {
-  background-color: #dc3545; /* 赤 */
+  background-color: #dc3545;
   color: #fff;
 }
 
 .highlighted-question {
-  font-size: 7.5rem; /* 文字サイズを大きく */
-  font-weight: bold; /* 太字 */
-  color: #3f51b5; /* 派手めの紺 */
-  font-family: 'Comic Sans MS', 'Arial', sans-serif; /* フォントを変える */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* 文字に影をつける */
-  //background-color: #ffe6cc; /* 薄いオレンジの背景色 */
-  padding: 10px; /* 背景と文字の間に余白を追加 */
-  border-radius: 5px; /* 背景の角を丸く */
-  display: inline-block; /* 背景色が文字サイズに合わせて表示される */
+  font-size: 7.5rem;
+  font-weight: bold;
+  color: #3f51b5;
+  font-family: 'Comic Sans MS', 'Arial', sans-serif;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
 }
 
 .highlighted-letter {
-  font-size: 7.5rem; /* 文字サイズを大きく */
-  font-weight: bold; /* 太字 */
-  color: #3f51b5; /* 派手めの紺 */
-  font-family: 'Comic Sans MS', 'Arial', sans-serif; /* フォントを変える */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* 文字に影をつける */
-  border-radius: 5px; /* 背景の角を丸く */
+  font-size: 7.5rem;
+  font-weight: bold;
+  color: #3f51b5;
+  font-family: 'Comic Sans MS', 'Arial', sans-serif;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
 }
 
 .center-container {
-  text-align: center; /* 子要素全体をセンタリング */
+  text-align: center;
 }
