@@ -1,5 +1,7 @@
-<h1>質問 <%= @current_question.id %></h1>
-<p><%= @current_question.question %></p>
+<div class="center-container">
+  <h1>クイズ <%= @current_question.id %>　これな～に？</h1>
+  <h1 class="highlighted-question"><%= @current_question.question %></h1>
+</div>
 
 <div class="py-5">
   <%= form_with url: answer_question_path(@current_question), method: :post do %>
@@ -8,21 +10,22 @@
         <% @current_question.items.each do |item| %>
         <div class="col-md-5">
           <div class="card mb-5">
+            <div class="card-body">
+              <%= radio_button_tag :choice, item.id %>
+              <label for="choice_#{item.id}">
             <% if item.image.attached? %>
               <%= image_tag url_for(item.image), class: 'card-img-top', alt: item.answer %>
             <% else %>
               <p>No Image Available</p>
             <% end %>
-            <div class="card-body">
+              </label>
               <p class="card-text"><%= item.answer %></p>
-              <%= radio_button_tag :choice, item.id %>
-              <%= label_tag "choice_#{item.id}", "選択" %>
             </div>
           </div>
         </div>
         <% end %>
       </div>
     </div>
-    <%= submit_tag "回答する" %>
+    <%= submit_tag "回答する" , class: "btn btn-lg btn-primary"%>
   <% end %>
 </div>
