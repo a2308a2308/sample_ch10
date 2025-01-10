@@ -2,3 +2,10 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "custom/menu"
+
+document.addEventListener("click", () => {
+  const alert = document.querySelector(".alert");
+  if (alert) {
+    alert.remove();
+  }
+});

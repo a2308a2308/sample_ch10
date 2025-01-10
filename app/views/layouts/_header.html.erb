@@ -1,6 +1,6 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "sample app", root_path, id: "logo" %>
+    <%= link_to "英語学習アプリ", root_path, id: "logo" %>
     <nav>
       <div class="navbar-header">
         <button id="hamburger" type="button" class="navbar-toggle collapsed">
@@ -13,6 +13,7 @@
       <ul id="navbar-menu"
           class="nav navbar-nav navbar-right collapse navbar-collapse">
         <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to 'Game', start_questions_path %></li>
         <li><%= link_to "Help", help_path %></li>
         <% if logged_in? %>
           <li><%= link_to "Users", users_path %></li>
