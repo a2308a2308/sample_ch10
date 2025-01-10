@@ -1,5 +1,7 @@
-<h1>質問 <%= @current_question.id %></h1>
-<p><%= @current_question.question %></p>
+<div class="center-container">
+  <h1>クイズ <%= @current_question.id %>　これな～に？</h1>
+  <h1 class="highlighted-question"><%= @current_question.question %></h1>
+</div>
 
 <div class="py-5">
   <%= form_with url: answer_question_path(@current_question), method: :post do %>
