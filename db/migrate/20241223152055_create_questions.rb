@@ -1,6 +1,7 @@
 class CreateQuestions < ActiveRecord::Migration[7.0]
   def change
-    create_table :questions do |t|
+  table_name = ENV['SCHEMA_NAME'].present? ? "#{ENV['SCHEMA_NAME']}.questions" : 'questions'
+    create_table table_name do |t|
       t.string :subject, null: false
       t.integer :question_type, null: false, default: 1
       t.string :question, null: false
