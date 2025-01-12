@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # exit on error
 set -o errexit
+echo $SCHEMA_NAME
+
 bundle install
 echo doing rails assets:precompile
 bundle exec rails assets:precompile
