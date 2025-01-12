@@ -20,7 +20,7 @@ if [ -z "$SCHEMA_NAME" ]; then
   exit 1
 fi
 # スキーマを作成
-psql -d データベース名 -c "CREATE SCHEMA IF NOT EXISTS $SCHEMA_NAME;"
+psql -d quiz-app-team4_DB -c "CREATE SCHEMA IF NOT EXISTS $SCHEMA_NAME;"
 
 # tanaka add db:migrate
 echo doing rails db:migrate
