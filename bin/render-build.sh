@@ -15,7 +15,7 @@ DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:drop db:create
 
 # oda add schema create
 # スキーマを作成
-psql -d "quiz-app-team4_DB" -c "CREATE SCHEMA IF NOT EXISTS $SCHEMA_NAME;"
+# psql -d "quiz-app-team4_DB" -c "CREATE SCHEMA IF NOT EXISTS $SCHEMA_NAME;"
 
 # tanaka add db:migrate
 echo doing rails db:migrate
