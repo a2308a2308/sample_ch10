@@ -8,7 +8,7 @@ bundle exec rails assets:precompile
 echo doing exec rails assets:clean
 bundle exec rails assets:clean
 
-echo doing DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:migrate:reset
+echo doing DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:drop db:create
 DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:drop db:create
 
 # tanaka add db:migrate
