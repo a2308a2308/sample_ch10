@@ -9,11 +9,11 @@ echo doing exec rails assets:clean
 bundle exec rails assets:clean
 
 echo doing DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:migrate:reset
-DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:migrate:reset
+DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:drop db:create
 
 # tanaka add db:migrate
-echo doing rails db:drop db:create db:migrate
-bundle rails db:drop db:create db:migrate
+echo doing rails db:migrate
+bundle exec rails db:migrate
 
 # bundle exec rails db:migrate
 echo doing rails db:seed
