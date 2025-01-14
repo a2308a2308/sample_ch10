@@ -1,0 +1,22 @@
+<section class="ranking-section">
+  <h1 class="ranking-title">ランキング</h1>
+  <table class="ranking-table">
+    <caption>ユーザーのランキングとスコア一覧</caption>
+    <thead>
+      <tr>
+        <th scope="col">順位</th>
+        <th scope="col">ユーザー名</th>
+        <th scope="col">得点</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @rankings.each_with_index do |ranking, index| %>
+        <tr class="ranking-row">
+          <td class="ranking-position"><%= index + 1 %></td>
+          <td class="ranking-user"><%= ranking.user_name %></td>
+          <td class="ranking-score"><%= ranking.total_score %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
