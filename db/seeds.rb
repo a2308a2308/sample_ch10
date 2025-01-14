@@ -16,6 +16,14 @@
 #               password_confirmation: password)
 #end
 
+# 環境変数でスキーマ名を取得（デフォルトは public）
+schema_name = ENV.fetch('SCHEMA_NAME', 'public')
+
+# スキーマを設定（PostgreSQLの場合のみ）
+if ActiveRecord::Base.connection.adapter_name.downcase.include?("postgresql")
+  ActiveRecord::Base.connection.execute("SET search_path TO #{schema_name}")
+end
+
 # サンプル質問を作成
 question = Question.find_or_create_by(
   subject: 'サンプル質問',
