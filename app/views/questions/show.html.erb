@@ -14,7 +14,7 @@
               <%= radio_button_tag :choice, item.id %>
               <label for="choice_#{item.id}">
             <% if item.image.attached? %>
-              <%= image_tag url_for(item.image), class: 'card-img-top', alt: item.answer %>
+              <%= image_tag url_for(item.image), class: 'imgclass', alt: item.answer %>
             <% else %>
               <p>No Image Available</p>
             <% end %>
