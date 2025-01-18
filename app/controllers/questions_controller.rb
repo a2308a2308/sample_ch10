@@ -113,6 +113,7 @@ class QuestionsController < ApplicationController
     question_ids = session[:question_ids] || []
     current_index = session[:current_index] || 0
     @current_question = Question.find(question_ids[current_index]) if question_ids.any?
+    @current_question_num = current_index + 1 # TODO: use current_index? add 1 on front page?
   end
 
   def next_question
