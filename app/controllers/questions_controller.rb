@@ -3,10 +3,12 @@ class QuestionsController < ApplicationController
   before_action :set_all_questions, only: [:start]
   before_action :set_current_question, only: %i[show answer]
 
-  ### following codes are added by a2308  TODO: 冗長な部分を関数にする
-  def start_level_1 # TODO: refactoring (copy-pasta).
+  ### a2308 added following codes
+  def start_level
+    level = params[:level]
+    print(level)
     # 全ての質問を取得
-    @questions = Question.where(level: 1).order(:id) # ID順に全質問を取得
+    @questions = Question.where(level: level).order(:id) # ID順に全質問を取得
     Rails.logger.debug "START action called: Questions retrieved: #{@questions.inspect}"
 
     if @questions.empty?
@@ -19,38 +21,9 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def start_level_2 # TODO: refactoring (copy-pasta).
-    # 全ての質問を取得
-    @questions = Question.where(level: 2).order(:id) # ID順に全質問を取得
-    Rails.logger.debug "START action called: Questions retrieved: #{@questions.inspect}"
+  ### a2308 added above codes
 
-    if @questions.empty?
-      flash[:alert] = '質問がありません。'
-      redirect_to root_path
-    else
-      session[:question_ids] = @questions.pluck(:id) # 質問IDをセッションに保存
-      session[:current_index] = 0 # 最初の質問のインデックスを初期化
-      redirect_to question_path(@questions.first)
-    end
-  end
-
-  def start_level_3 # TODO: refactoring (copy-pasta).
-    # 全ての質問を取得
-    @questions = Question.where(level: 3).order(:id) # ID順に全質問を取得
-    Rails.logger.debug "START action called: Questions retrieved: #{@questions.inspect}"
-
-    if @questions.empty?
-      flash[:alert] = '質問がありません。'
-      redirect_to root_path
-    else
-      session[:question_ids] = @questions.pluck(:id) # 質問IDをセッションに保存
-      session[:current_index] = 0 # 最初の質問のインデックスを初期化
-      redirect_to question_path(@questions.first)
-    end
-  end
-  ### a2308 added above
-
-  def start
+  def start_all_level
     # 全ての質問を取得
     @questions = Question.all.order(:id) # ID順に全質問を取得
     Rails.logger.debug "START action called: Questions retrieved: #{@questions.inspect}"
