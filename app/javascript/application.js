@@ -9,3 +9,13 @@ document.addEventListener("click", () => {
     alert.remove();
   }
 });
+
+// 1秒後に「正解です」のメッセージを消す処理
+document.addEventListener("DOMContentLoaded", () => {
+  const alert = document.querySelector(".alert");
+  if (alert) {
+    setTimeout(() => {
+      alert.remove();
+    }, 1000); // 1秒後に削除
+  }
+});
