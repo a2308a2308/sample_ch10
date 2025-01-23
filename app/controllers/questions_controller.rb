@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :require_login, only: [:start]
-  before_action :set_all_questions, only: [:start]
+  before_action :require_login, only: %i[start_all_level start_level]
+  before_action :set_all_questions, only: %i[start_all_level start_level]
   before_action :set_current_question, only: %i[show answer]
 
   ### a2308 added following codes
