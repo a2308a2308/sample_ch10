@@ -3,6 +3,10 @@
 
 
   <br> <br> <br>
-
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  <% if logged_in? %>
+    <h2> today : <%= Date.today%></h2>
+    <h2>レベルをえらんで クイズをはじめよう！</h2>
+  <% else %>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  <% end %>
 </div>
