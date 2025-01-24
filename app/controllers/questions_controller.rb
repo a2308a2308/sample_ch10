@@ -1,9 +1,29 @@
 class QuestionsController < ApplicationController
-  before_action :require_login, only: [:start]
-  before_action :set_all_questions, only: [:start]
-  before_action :set_current_question, only: [:show, :answer]
+  before_action :require_login, only: %i[start_all_level start_level]
+  before_action :set_all_questions, only: %i[start_all_level start_level]
+  before_action :set_current_question, only: %i[show answer]
 
-  def start
+  ### a2308 added following codes
+  def start_level
+    level = params[:level]
+    print(level)
+    # 全ての質問を取得
+    @questions = Question.where(level: level).order(:id) # ID順に全質問を取得
+    Rails.logger.debug "START action called: Questions retrieved: #{@questions.inspect}"
+
+    if @questions.empty?
+      flash[:alert] = '質問がありません。'
+      redirect_to root_path
+    else
+      session[:question_ids] = @questions.pluck(:id) # 質問IDをセッションに保存
+      session[:current_index] = 0 # 最初の質問のインデックスを初期化
+      redirect_to question_path(@questions.first)
+    end
+  end
+
+  ### a2308 added above codes
+
+  def start_all_level
     # 全ての質問を取得
     @questions = Question.all.order(:id) # ID順に全質問を取得
     Rails.logger.debug "START action called: Questions retrieved: #{@questions.inspect}"
