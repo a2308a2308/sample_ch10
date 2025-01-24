@@ -1,5 +1,5 @@
 <div class="center-container">
-  <h1>クイズ <%= @current_question.id %>　これな～に？</h1>
+  <h1>クイズ <%= @current_question_num %>　これな～に？</h1>
   <h1 class="highlighted-question"><%= @current_question.question %></h1>
 </div>
 
@@ -11,13 +11,14 @@
         <div class="col-md-5">
           <div class="card mb-5">
             <div class="card-body">
-              <%= radio_button_tag :choice, item.id %>
-              <label for="choice_#{item.id}">
-            <% if item.image.attached? %>
-              <%= image_tag url_for(item.image), class: 'card-img-top', alt: item.answer %>
-            <% else %>
-              <p>No Image Available</p>
-            <% end %>
+              <%= radio_button_tag :choice, item.id, false, id: "choice_#{item.id}", style: "display:none;" %>
+              <label for="choice_#{item.id}" onclick="selectChoiceAndSubmit(<%= item.id %>)">
+              <label for="choice_<%= item.id %>" onclick="selectChoiceAndSubmit(<%= item.id %>)">
+                <% if item.image.attached? %>
+                  <%= image_tag url_for(item.image), class: 'imgclass', alt: item.answer %>
+                <% else %>
+                  <p>No Image Available</p>
+                <% end %>
               </label>
               <p class="card-text"><%= item.answer %></p>
             </div>
@@ -26,6 +27,12 @@
         <% end %>
       </div>
     </div>
-    <%= submit_tag "回答する" , class: "btn btn-lg btn-primary"%>
+    <%= submit_tag "回答する" , class: "btn btn-lg btn-primary", style: "display:none;" %>
   <% end %>
 </div>
+<script>
+  function selectChoiceAndSubmit(choiceId) {
+    document.getElementById('choice_' + choiceId).checked = true;
+    document.querySelector('form').submit();
+  }
+</script>
