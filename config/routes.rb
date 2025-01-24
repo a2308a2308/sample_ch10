@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   # 質問関連のルート
   get 'questions/start', to: 'questions#start', as: :start_questions # 先に記述
+  get 'questions/start_level/:level', to: 'questions#start_level', as: :start_level # TODO: refactoring (copy-pasta).
+  get 'questions/start_all_level', to: 'questions#start_all_level', as: :start_all_level # TODO: refactoring (copy-pasta).
   resources :questions, only: [:show] do
     post 'answer', on: :member # POST /questions/:id/answer
     # items を questions にネスト
