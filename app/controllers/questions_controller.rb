@@ -28,8 +28,9 @@ class QuestionsController < ApplicationController
     @questions = Question.all.order(:id) # ID順に全質問を取得
     Rails.logger.debug "START action called: Questions retrieved: #{@questions.inspect}"
 
+
     if @questions.empty?
-      flash[:alert] = '質問がありません。'
+      flash[:alert] = "質問がありません。"
       redirect_to root_path
     else
       session[:question_ids] = @questions.pluck(:id) # 質問IDをセッションに保存
@@ -49,9 +50,9 @@ class QuestionsController < ApplicationController
 
     if @current_question.correct_item_id == selected_choice
       current_user.increment_score
-      flash[:notice] = '正解です！'
+      flash[:notice] = "正解です！"
     else
-      flash[:alert] = '不正解です。'
+      flash[:alert] = "不正解です。"
     end
 
     # 次の質問がある場合はインデックスを更新
@@ -60,14 +61,14 @@ class QuestionsController < ApplicationController
       session[:current_index] += 1
       redirect_to question_path(next_q)
     else
-      flash[:notice] = 'これが最後の質問です！お疲れ様でした！'
+      flash[:notice] = "これが最後の質問です！お疲れ様でした！"
       Rails.logger.debug "Redirecting to summary_path: #{summary_path}"
       redirect_to summary_path
     end
   end
 
   def summary
-    Rails.logger.debug 'Summary'
+    Rails.logger.debug "Summary"
     @score = current_user.score_for_date # 本日の得点を表示
     # セッションのリセット
     session[:current_index] = nil
@@ -76,17 +77,16 @@ class QuestionsController < ApplicationController
   private
 
   def set_all_questions
-    Rails.logger.debug 'Set All'
+    Rails.logger.debug "Set All"
     # 全質問を取得してセット
     @questions = Question.all
   end
 
   def set_current_question
-    Rails.logger.debug 'Set current'
+    Rails.logger.debug "Set current"
     question_ids = session[:question_ids] || []
     current_index = session[:current_index] || 0
     @current_question = Question.find(question_ids[current_index]) if question_ids.any?
-    @current_question_num = current_index + 1 # TODO: use current_index? add 1 on front page?
   end
 
   def next_question
@@ -101,16 +101,17 @@ class QuestionsController < ApplicationController
       next_question = Question.find_by(id: question_ids[next_index])
       Rails.logger.debug "Next Question: #{next_question.inspect}"
       # session[:current_index] = next_index
-      next_question
+      return next_question
     else
-      Rails.logger.debug 'No more questions available.'
-      nil
+      Rails.logger.debug "No more questions available."
+      return nil
     end
   end
 
   def require_login
-    return if logged_in?
-
-    redirect_to login_path, alert: 'ログインしてください'
+    unless logged_in?
+      redirect_to login_path, alert: "ログインしてください"
+    end
   end
+
 end
